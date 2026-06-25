@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #1a2438 #0a0e1a;
+  }
+
+  *::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: rgba(125, 211, 252, 0.15);
+    border-radius: 10px;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: rgba(125, 211, 252, 0.25);
+  }
+}
+
+@layer components {
+  /* Glacier Glassmorphism — 核心玻璃态 */
+  .glass-card {
+    @apply rounded-xl;
+    background: rgba(15, 21, 36, 0.6);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(125, 211, 252, 0.1);
+    box-shadow: 0 0 30px rgba(125, 211, 252, 0.05);
+  }
+
+  .glass-card-elevated {
+    background: rgba(15, 21, 36, 0.75);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(125, 211, 252, 0.15);
+  }
+
+  /* 发光效果 — Glacier 风格：克制、微妙 */
+  .ai-glow {
+    box-shadow: 0px 0px 20px rgba(125, 211, 252, 0.1);
+  }
+
+  .ai-glow-text {
+    text-shadow: 0px 0px 10px rgba(125, 211, 252, 0.3);
+  }
+
+  .active-glow:focus-within {
+    border-color: rgba(125, 211, 252, 0.4);
+    box-shadow: 0px 0px 10px rgba(125, 211, 252, 0.15);
+  }
+
+  /* 按钮 — 半透明冰蓝 */
+  .btn-primary {
+    @apply px-5 py-2.5 rounded-lg font-semibold transition-all duration-300;
+    background: rgba(125, 211, 252, 0.15);
+    border: 1px solid rgba(125, 211, 252, 0.25);
+    color: #c8eaff;
+  }
+
+  .btn-primary:hover {
+    background: rgba(125, 211, 252, 0.25);
+    border-color: rgba(125, 211, 252, 0.4);
+    box-shadow: 0px 0px 20px rgba(125, 211, 252, 0.08);
+    transform: translateY(-1px);
+  }
+
+  .btn-primary:disabled {
+    @apply opacity-40 cursor-not-allowed;
+    transform: none;
+  }
+
+  .btn-secondary {
+    @apply px-5 py-2.5 rounded-lg font-medium transition-all duration-300;
+    background: rgba(15, 21, 36, 0.4);
+    border: 1px solid rgba(125, 211, 252, 0.08);
+    color: #e0e8f0;
+  }
+
+  .btn-secondary:hover {
+    border-color: rgba(125, 211, 252, 0.2);
+    background: rgba(125, 211, 252, 0.05);
+  }
+
+  /* 输入框 — 玻璃态 */
+  .input-field {
+    @apply w-full px-4 py-2.5 rounded-lg text-sm transition-all duration-300;
+    background: rgba(15, 21, 36, 0.5);
+    border: 1px solid rgba(125, 211, 252, 0.08);
+    color: #e0e8f0;
+  }
+
+  .input-field:focus {
+    @apply outline-none;
+    border-color: rgba(125, 211, 252, 0.3);
+    box-shadow: 0px 0px 8px rgba(125, 211, 252, 0.08);
+  }
+
+  .input-field::placeholder {
+    color: #4a6070;
+  }
+
+  select.input-field {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%234a6070' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+  }
+
+  select.input-field option {
+    background: #141c2e;
+    color: #e0e8f0;
+  }
+
+  /* 徽章 — 低调半透明 */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-mono font-medium;
+  }
+
+  .badge-green {
+    background: rgba(200, 160, 240, 0.12);
+    color: #c8a0f0;
+  }
+
+  .badge-blue {
+    background: rgba(125, 211, 252, 0.12);
+    color: #7dd3fc;
+  }
+
+  .badge-amber {
+    background: rgba(251, 191, 36, 0.1);
+    color: #fbbf24;
+  }
+
+  .badge-red {
+    background: rgba(255, 107, 107, 0.1);
+    color: #ff6b6b;
+  }
+
+  /* 脉冲点 — 冰蓝呼吸 */
+  .pulse-dot {
+    @apply inline-block w-2 h-2 rounded-full;
+    background: #7dd3fc;
+    animation: pulse 3s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+
+  /* 数据流动线 */
+  .marching-ants {
+    background-size: 20px 2px;
+    background-image: linear-gradient(90deg, rgba(125, 211, 252, 0.5) 50%, transparent 50%);
+    height: 2px;
+    animation: ants 1s infinite linear;
+  }
+
+  @keyframes ants {
+    from { background-position: 0 0; }
+    to { background-position: 20px 0; }
+  }
+}

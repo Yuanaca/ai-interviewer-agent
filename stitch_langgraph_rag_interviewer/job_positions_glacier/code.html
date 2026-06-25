@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Job Position Management | Interview Intelligence Glacier</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glacier-bg {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            background-attachment: fixed;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-right: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .glass-header {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .ice-glow {
+            box-shadow: 0px 0px 15px rgba(125, 211, 252, 0.4);
+        }
+        .active-ice-border:focus-within {
+            border-color: #7dd3fc;
+            box-shadow: 0px 0px 8px rgba(125, 211, 252, 0.5);
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #bae6fd;
+            border-radius: 10px;
+        }
+        .marching-ants {
+            background-size: 20px 2px;
+            background-image: linear-gradient(90deg, #7dd3fc 50%, transparent 50%);
+            height: 2px;
+            animation: ants 1s infinite linear;
+        }
+        @keyframes ants {
+            from { background-position: 0 0; }
+            to { background-position: 20px 0; }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary": "#0369a1", /* Darker blue for text contrast on light ice */
+                      "primary-container": "#7dd3fc", /* Ice Blue */
+                      "on-primary-container": "#034d74",
+                      "secondary": "#38bdf8",
+                      "secondary-container": "#e0f2fe",
+                      "on-secondary-container": "#0369a1",
+                      "tertiary": "#10b981",
+                      "background": "#f0f9ff",
+                      "surface": "#ffffff",
+                      "on-surface": "#1e293b",
+                      "on-surface-variant": "#64748b",
+                      "outline": "#cbd5e1",
+                      "outline-variant": "#e2e8f0",
+                      "surface-container": "rgba(255, 255, 255, 0.5)",
+                      "surface-container-high": "rgba(255, 255, 255, 0.7)",
+                      "surface-container-highest": "rgba(255, 255, 255, 0.9)"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.5rem",
+                      "lg": "0.75rem",
+                      "xl": "1rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "md": "24px",
+                      "xs": "8px",
+                      "sm": "16px",
+                      "gutter": "24px",
+                      "xl": "64px",
+                      "container-max": "1440px",
+                      "lg": "40px",
+                      "base": "4px"
+              },
+              "fontFamily": {
+                      "headline-lg": ["Inter"],
+                      "title-md": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "label-mono": ["JetBrains Mono"],
+                      "body-lg": ["Inter"],
+                      "display-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="glacier-bg text-on-surface font-body-lg min-h-screen">
+<!-- Side Navigation Shell -->
+<nav class="glass-nav h-screen w-64 fixed left-0 top-0 flex flex-col py-md px-sm z-50">
+<div class="mb-xl px-sm">
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary">Interview AI</h1>
+<p class="text-body-sm text-on-surface-variant font-medium">Glacier Engine v2.4</p>
+</div>
+<div class="flex-grow space-y-base">
+<a class="flex items-center gap-sm px-sm py-xs rounded-xl text-on-surface-variant font-semibold hover:bg-white/40 transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-xs rounded-xl text-primary font-bold bg-white/60 shadow-sm border border-white/40 transition-colors" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span>Positions</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-xs rounded-xl text-on-surface-variant font-semibold hover:bg-white/40 transition-colors" href="#">
+<span class="material-symbols-outlined">videocam</span>
+<span>Interview Room</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-xs rounded-xl text-on-surface-variant font-semibold hover:bg-white/40 transition-colors" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span>Reports</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-xs rounded-xl text-on-surface-variant font-semibold hover:bg-white/40 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</div>
+<div class="mt-auto px-sm pt-md border-t border-white/40">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container shadow-sm">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div>
+<p class="text-body-sm font-bold">System Operator</p>
+<p class="text-[10px] uppercase tracking-widest text-primary font-bold">Admin Level</p>
+</div>
+</div>
+</div>
+</nav>
+<!-- Top App Bar Shell -->
+<header class="glass-header fixed top-0 right-0 w-[calc(100%-16rem)] z-40 flex justify-between items-center h-16 px-md ml-64">
+<div class="flex items-center gap-md">
+<h2 class="font-headline-lg text-title-md font-black text-primary">Positions</h2>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="bg-white/40 border border-white/60 backdrop-blur-md rounded-full py-1.5 pl-10 pr-4 text-body-sm focus:outline-none focus:ring-2 focus:ring-primary-container w-64 transition-all placeholder:text-on-surface-variant/60" placeholder="Search positions..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<button class="p-2 hover:bg-white/40 rounded-full transition-all duration-300 text-on-surface-variant"><span class="material-symbols-outlined">sensors</span></button>
+<button class="p-2 hover:bg-white/40 rounded-full transition-all duration-300 relative text-on-surface-variant">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-400 rounded-full border border-white"></span>
+</button>
+<button class="p-2 hover:bg-white/40 rounded-full transition-all duration-300 text-on-surface-variant"><span class="material-symbols-outlined">account_circle</span></button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 mt-16 p-lg min-h-screen">
+<!-- Header Actions -->
+<div class="flex justify-between items-end mb-lg">
+<div>
+<p class="text-primary font-label-mono mb-base uppercase tracking-wider font-bold">Glacier Intelligence v2.4</p>
+<h3 class="text-display-lg font-display-lg text-on-surface">Job Management</h3>
+</div>
+<button class="flex items-center gap-sm bg-primary-container text-on-primary-container px-md py-sm rounded-xl font-bold ice-glow transition-transform active:scale-95 hover:bg-sky-200" onclick="toggleSidebar()">
+<span class="material-symbols-outlined">add</span>
+<span>Add New Position</span>
+</button>
+</div>
+<!-- Bento Grid / Position Cards -->
+<div class="grid grid-cols-12 gap-md">
+<!-- Statistics High-level -->
+<div class="col-span-12 md:col-span-4 glass-card p-md rounded-xl">
+<div class="flex justify-between items-start mb-sm">
+<span class="font-label-mono text-on-surface-variant text-xs uppercase font-bold">TOTAL OPENINGS</span>
+<span class="material-symbols-outlined text-primary">trending_up</span>
+</div>
+<div class="text-display-lg font-display-lg mb-xs text-on-surface">12</div>
+<div class="text-body-sm text-on-surface-variant font-medium">Active search across 4 departments</div>
+</div>
+<div class="col-span-12 md:col-span-4 glass-card p-md rounded-xl">
+<div class="flex justify-between items-start mb-sm">
+<span class="font-label-mono text-on-surface-variant text-xs uppercase font-bold">ACTIVE CANDIDATES</span>
+<span class="material-symbols-outlined text-secondary">groups</span>
+</div>
+<div class="text-display-lg font-display-lg mb-xs text-on-surface">148</div>
+<div class="text-body-sm text-on-surface-variant font-medium">+22 from last week</div>
+</div>
+<div class="col-span-12 md:col-span-4 glass-card p-md rounded-xl">
+<div class="flex justify-between items-start mb-sm">
+<span class="font-label-mono text-on-surface-variant text-xs uppercase font-bold">AVG. CONFIDENCE</span>
+<span class="material-symbols-outlined text-tertiary">bolt</span>
+</div>
+<div class="text-display-lg font-display-lg mb-xs text-on-surface">84<span class="text-title-md font-medium">%</span></div>
+<div class="text-body-sm text-on-surface-variant font-medium">AI validation accuracy</div>
+</div>
+<!-- Position List Table View -->
+<div class="col-span-12 glass-card rounded-xl overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead class="bg-white/30">
+<tr class="text-primary font-label-mono text-sm uppercase">
+<th class="px-md py-md border-b border-white/40">Job Title</th>
+<th class="px-md py-md border-b border-white/40">Department</th>
+<th class="px-md py-md border-b border-white/40">Candidates</th>
+<th class="px-md py-md border-b border-white/40">AI Status</th>
+<th class="px-md py-md border-b border-white/40">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/20">
+<!-- Row 1 -->
+<tr class="hover:bg-white/40 transition-colors group cursor-pointer" onclick="toggleSidebar()">
+<td class="px-md py-md">
+<div class="font-bold text-on-surface">Senior Frontend Engineer</div>
+<div class="text-body-sm text-on-surface-variant">ID: FE-092 • Full-time</div>
+</td>
+<td class="px-md py-md">
+<span class="bg-primary-container/30 border border-primary-container/40 px-sm py-1 rounded-full text-xs font-bold text-primary">Engineering</span>
+</td>
+<td class="px-md py-md">
+<div class="flex items-center gap-xs">
+<span class="font-label-mono text-primary font-bold">42</span>
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-sky-200 border border-white"></div>
+<div class="w-6 h-6 rounded-full bg-sky-300 border border-white"></div>
+<div class="w-6 h-6 rounded-full bg-sky-400 border border-white"></div>
+</div>
+</div>
+</td>
+<td class="px-md py-md">
+<div class="flex items-center gap-sm">
+<span class="w-2 h-2 rounded-full bg-tertiary shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span>
+<span class="text-body-sm font-semibold">Screening Active</span>
+</div>
+</td>
+<td class="px-md py-md text-right">
+<button class="p-2 opacity-0 group-hover:opacity-100 transition-opacity text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-2 opacity-0 group-hover:opacity-100 transition-opacity text-on-surface-variant"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-white/40 transition-colors group cursor-pointer" onclick="toggleSidebar()">
+<td class="px-md py-md">
+<div class="font-bold text-on-surface">Product Manager</div>
+<div class="text-body-sm text-on-surface-variant">ID: PM-214 • Hybrid</div>
+</td>
+<td class="px-md py-md">
+<span class="bg-secondary-container border border-secondary-container/40 px-sm py-1 rounded-full text-xs font-bold text-on-secondary-container">Product</span>
+</td>
+<td class="px-md py-md">
+<div class="flex items-center gap-xs">
+<span class="font-label-mono text-primary font-bold">18</span>
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-sky-200 border border-white"></div>
+<div class="w-6 h-6 rounded-full bg-sky-300 border border-white"></div>
+</div>
+</div>
+</td>
+<td class="px-md py-md">
+<div class="flex items-center gap-sm">
+<span class="w-2 h-2 rounded-full bg-tertiary shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span>
+<span class="text-body-sm font-semibold">Interviews Scheduled</span>
+</div>
+</td>
+<td class="px-md py-md text-right">
+<button class="p-2 opacity-0 group-hover:opacity-100 transition-opacity text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-2 opacity-0 group-hover:opacity-100 transition-opacity text-on-surface-variant"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-white/40 transition-colors group cursor-pointer">
+<td class="px-md py-md">
+<div class="font-bold text-on-surface">DevOps Architect</div>
+<div class="text-body-sm text-on-surface-variant">ID: DX-441 • Remote</div>
+</td>
+<td class="px-md py-md">
+<span class="bg-white/40 border border-white/60 px-sm py-1 rounded-full text-xs font-bold text-on-surface-variant">Infrastructure</span>
+</td>
+<td class="px-md py-md">
+<div class="flex items-center gap-xs">
+<span class="font-label-mono text-primary font-bold">88</span>
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-sky-100 border border-white"></div>
+<div class="w-6 h-6 rounded-full bg-sky-200 border border-white"></div>
+<div class="w-6 h-6 rounded-full bg-sky-300 border border-white"></div>
+<div class="w-6 h-6 rounded-full bg-sky-400 border border-white"></div>
+</div>
+</div>
+</td>
+<td class="px-md py-md">
+<div class="flex items-center gap-sm text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-slate-300"></span>
+<span class="text-body-sm font-semibold">Paused</span>
+</div>
+</td>
+<td class="px-md py-md text-right">
+<button class="p-2 opacity-0 group-hover:opacity-100 transition-opacity text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-2 opacity-0 group-hover:opacity-100 transition-opacity text-on-surface-variant"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+<!-- Side Panel Overlay Background -->
+<div class="fixed inset-0 bg-sky-900/10 backdrop-blur-sm z-[60] hidden transition-opacity" id="side-overlay" onclick="toggleSidebar()"></div>
+<!-- Side Panel: Job Content Management -->
+<aside class="fixed top-0 right-0 h-screen w-full max-w-2xl bg-white/70 backdrop-blur-2xl border-l border-white/60 z-[70] translate-x-full transition-transform duration-500 flex flex-col shadow-2xl" id="side-panel">
+<!-- Panel Header -->
+<div class="p-md border-b border-white/60 flex justify-between items-center bg-white/40">
+<div>
+<h4 class="text-title-md font-bold text-primary">Edit Position</h4>
+<p class="text-body-sm text-on-surface-variant font-medium">Configuration for Senior Frontend Engineer</p>
+</div>
+<button class="p-2 hover:bg-white/60 rounded-full transition-colors text-on-surface-variant" onclick="toggleSidebar()"><span class="material-symbols-outlined">close</span></button>
+</div>
+<div class="flex-grow overflow-y-auto p-md space-y-lg">
+<!-- Job Content Sections -->
+<section class="space-y-sm">
+<label class="font-label-mono text-primary uppercase text-[11px] tracking-widest font-bold">Job Description</label>
+<div class="glass-card rounded-xl overflow-hidden active-ice-border border-white/80">
+<div class="bg-white/40 px-sm py-2 flex gap-sm border-b border-white/60">
+<button class="material-symbols-outlined text-sm text-primary">format_bold</button>
+<button class="material-symbols-outlined text-sm text-primary">format_italic</button>
+<button class="material-symbols-outlined text-sm text-primary">format_list_bulleted</button>
+<div class="w-px h-4 bg-white/60 mx-xs"></div>
+<button class="material-symbols-outlined text-sm text-secondary">auto_awesome</button>
+</div>
+<textarea class="w-full h-48 p-md bg-transparent border-none focus:ring-0 text-body-lg resize-none text-on-surface placeholder:text-on-surface-variant/40">We are seeking a Senior Frontend Engineer to lead our Intelligence Dashboard team. 
+
+Key Responsibilities:
+- Architect scalable UI components using React and Tailwind.
+- Implement high-performance data visualizations.
+- Collaborate with the AI team to integrate LangGraph agents.</textarea>
+</div>
+</section>
+<section class="space-y-sm">
+<label class="font-label-mono text-secondary uppercase text-[11px] tracking-widest font-bold">Required Skills</label>
+<div class="flex flex-wrap gap-xs">
+<span class="px-sm py-1 bg-primary-container/40 border border-primary-container text-primary rounded-full text-xs font-bold flex items-center gap-xs">React 18 <span class="material-symbols-outlined text-xs">close</span></span>
+<span class="px-sm py-1 bg-primary-container/40 border border-primary-container text-primary rounded-full text-xs font-bold flex items-center gap-xs">Tailwind CSS <span class="material-symbols-outlined text-xs">close</span></span>
+<span class="px-sm py-1 bg-primary-container/40 border border-primary-container text-primary rounded-full text-xs font-bold flex items-center gap-xs">TypeScript <span class="material-symbols-outlined text-xs">close</span></span>
+<span class="px-sm py-1 bg-primary-container/40 border border-primary-container text-primary rounded-full text-xs font-bold flex items-center gap-xs">D3.js <span class="material-symbols-outlined text-xs">close</span></span>
+<button class="px-sm py-1 border border-dashed border-primary/40 text-primary rounded-full text-xs font-bold flex items-center gap-xs hover:bg-white/40 transition-colors">+ Add Skill</button>
+</div>
+</section>
+<section class="space-y-sm">
+<div class="flex justify-between items-center mb-base">
+<label class="font-label-mono text-on-surface-variant uppercase text-[11px] tracking-widest font-bold">AI Evaluation Weights</label>
+<span class="text-[10px] bg-primary/10 text-primary px-2 py-0.5 rounded font-bold">AUTO-BALANCED</span>
+</div>
+<div class="glass-card p-md rounded-xl space-y-md relative overflow-hidden bg-white/20 border-white/60">
+<!-- Marching ants aesthetic decoration -->
+<div class="absolute top-0 left-0 w-full marching-ants opacity-40"></div>
+<div class="space-y-xs">
+<div class="flex justify-between text-body-sm font-semibold">
+<span>Technical Depth</span>
+<span class="font-label-mono text-primary">40%</span>
+</div>
+<input class="w-full accent-primary-container bg-sky-100 rounded-lg h-2 appearance-none cursor-pointer" type="range" value="40"/>
+</div>
+<div class="space-y-xs">
+<div class="flex justify-between text-body-sm font-semibold">
+<span>System Architecture</span>
+<span class="font-label-mono text-primary">25%</span>
+</div>
+<input class="w-full accent-primary-container bg-sky-100 rounded-lg h-2 appearance-none cursor-pointer" type="range" value="25"/>
+</div>
+<div class="space-y-xs">
+<div class="flex justify-between text-body-sm font-semibold">
+<span>Communication Skills</span>
+<span class="font-label-mono text-primary">20%</span>
+</div>
+<input class="w-full accent-primary-container bg-sky-100 rounded-lg h-2 appearance-none cursor-pointer" type="range" value="20"/>
+</div>
+<div class="space-y-xs">
+<div class="flex justify-between text-body-sm font-semibold">
+<span>Cultural Alignment</span>
+<span class="font-label-mono text-primary">15%</span>
+</div>
+<input class="w-full accent-primary-container bg-sky-100 rounded-lg h-2 appearance-none cursor-pointer" type="range" value="15"/>
+</div>
+</div>
+</section>
+</div>
+<!-- Panel Footer -->
+<div class="p-md border-t border-white/60 bg-white/40 flex gap-sm">
+<button class="flex-1 py-sm border border-white/60 rounded-xl font-bold text-on-surface-variant hover:bg-white/60 transition-colors" onclick="toggleSidebar()">Discard</button>
+<button class="flex-1 py-sm bg-primary-container text-on-primary-container rounded-xl font-bold shadow-md ice-glow hover:bg-sky-200 transition-all">Save Changes</button>
+</div>
+</aside>
+<script>
+    function toggleSidebar() {
+        const panel = document.getElementById('side-panel');
+        const overlay = document.getElementById('side-overlay');
+        
+        if (panel.classList.contains('translate-x-full')) {
+            panel.classList.remove('translate-x-full');
+            overlay.classList.remove('hidden');
+        } else {
+            panel.classList.add('translate-x-full');
+            overlay.classList.add('hidden');
+        }
+    }
+</script>
+</body></html>

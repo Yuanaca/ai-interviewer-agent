@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+*.egg-info/
+dist/
+
+# Node
+node_modules/
+dist/
+
+# IDE
+.vscode/
+.idea/
+
+# Env
+.env
+
+# Data
+chroma_db/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp scripts
+backend/import_*.py
+backend/seed_*.py
+backend/test_*.py
+backend/repo_knowledge/
